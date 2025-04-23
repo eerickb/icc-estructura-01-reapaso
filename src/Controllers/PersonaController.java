@@ -6,6 +6,8 @@ import Models.Persona;
  * Controlador para manejar la lógica de operaciones sobre arrays de Persona.
  */
 public class PersonaController {
+    private static final Persona[] Persona = null;
+
     /**
      * Método para ordenar un arreglo de Persona por edad utilizando el algoritmo de
      * inserscion .
@@ -13,7 +15,15 @@ public class PersonaController {
      * @param personas Array de Persona a ordenar.
      */
     public void ordenarPorEdad(Persona[] personas) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        for (int i = 1; i < personas.length; i++) {
+            Persona key = personas[i];
+            int j = i - 1;
+            while (j >= 0 && personas[j].getEdad() > key.getEdad()) {
+                personas[j + 1] = personas[j];
+                j--;
+            }
+            personas[j + 1] = key;
+        }
     }
 
     /**
@@ -26,7 +36,11 @@ public class PersonaController {
      *         encuentra.
      */
     public Persona buscarPorEdad(Persona[] personas, int edad) {
-        throw new UnsupportedOperationException("Not implemented yet.");
-
+        for (Persona persona : personas) {
+            if (persona.getEdad() == edad) {
+                return persona;
+            }
+        }
+        return null;
     }
 }
